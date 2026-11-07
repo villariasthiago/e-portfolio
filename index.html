@@ -60,13 +60,8 @@ header.top{position:sticky;top:0;z-index:50;background:rgba(6,8,14,.72);backdrop
 .kbtn{font-family:var(--mono);font-size:.75rem;color:var(--muted);border:1px solid var(--line2);background:var(--surface);border-radius:8px;padding:6px 10px;cursor:pointer;display:flex;align-items:center;gap:6px}
 .kbtn:hover{color:var(--text);border-color:var(--cyan)}
 .kbtn kbd{font-family:inherit;background:var(--bg);border:1px solid var(--line2);border-radius:4px;padding:0 5px}
-.burger{display:none;margin-left:auto;background:none;border:1px solid var(--line2);color:var(--text);border-radius:8px;width:40px;height:40px;cursor:pointer;font-size:1.1rem}
-@media(max-width:900px){
-  .burger{display:block}.kbtn{display:none}
-  .links{position:fixed;top:64px;left:0;right:0;flex-direction:column;background:var(--bg2);border-bottom:1px solid var(--line);padding:12px 24px 20px;display:none}
-  .links.open{display:flex}
-  .links a{font-size:1rem;padding:12px}
-}
+@media(max-width:900px){.kbtn{display:none}}
+@media(max-width:560px){.nav{gap:8px}.brand>span:last-child{display:none}.links a{padding:8px 9px;font-size:.8rem}.links a .n{display:none}}
 
 /* ---------- VIEWS ---------- */
 main{min-height:calc(100vh - 64px)}
@@ -89,10 +84,10 @@ section.block{padding:72px 0}
 .copybtn:hover{color:var(--cyan);border-color:var(--cyan)}
 
 /* ---------- HERO ---------- */
-.hero{padding:80px 0 56px;display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center}
+.hero{padding:28px 0 56px;display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center}
 .hero h1{margin:16px 0 18px}
 .hero .lead{margin-bottom:28px}
-@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:48px}}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:20px}}
 .term{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,.8)}
 .term .bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid var(--line);background:var(--bg2)}
 .term .bar i{width:11px;height:11px;border-radius:50%;background:#2b3450}
@@ -321,7 +316,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
 <header class="top">
   <nav class="wrap nav" aria-label="Principal">
     <a href="#inicio" class="brand" aria-label="Inicio"><span class="logo">TV</span><span>thiago<span class="muted">.dev</span><span class="cursor">_</span></span></a>
-    <button class="burger" aria-label="Abrir menú" aria-expanded="false" id="burger">☰</button>
     <div class="links" id="links">
       <a href="#inicio" data-nav="inicio"><span class="n">01</span>inicio</a>
       <a href="#sobre-mi" data-nav="sobre-mi"><span class="n">02</span>sobre mí</a>
@@ -338,7 +332,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
   <div class="wrap">
     <div class="hero">
       <div>
-        <div class="eyebrow">e-portfolio · Educación Informática II · UNLPam</div>
+        <div class="eyebrow">e-portfolio · Informática Educativa II · UNLPam</div>
         <h1>Thiago<br><span class="grad">Llovio Villarías</span></h1>
         <p class="lead">Estudiante de 3.º año del <strong style="color:var(--text)">Profesorado Universitario en Computación</strong>. Diseño recursos educativos con tecnología: videojuegos, simuladores, museos virtuales y contenido multimedia que se usan directo en el navegador.</p>
         <div class="row">
@@ -385,7 +379,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
         <div class="meta">
           <span>Santa Rosa, La Pampa</span>
           <span>UNLPam · FCEyN · ingreso 2024</span>
-          <span>Linux de uso diario</span>
+          <span>Linux</span>
         </div>
       </aside>
       <div>
@@ -452,7 +446,7 @@ const TIPOS={juego:'videojuegos',sim:'simuladores','3d':'3D / VR',media:'multime
 const PROJECTS=[
 {
   id:'museo-virtual', title:'Museo Virtual de Paleontología', tipo:'3d', featured:true, ie2:true,
-  ctx:'Educación Informática II · FCEyN',
+  ctx:'Informática Educativa II · FCEyN',
   img:'img/museo-virtual.webp', url:GH+'Museo-Virtual/', repo:REPO+'Museo-Virtual', online:true,
   extra:[['demo en Vercel','https://paleo-virtual-fceyn.vercel.app']],
   short:'Repositorio virtual de fósiles en 3D, con buscador, filtros y recorrido inmersivo.',
@@ -466,17 +460,18 @@ const PROJECTS=[
   id:'control-por-gestos', title:'Control por gestos', tipo:'juego', featured:true, ie2:true,
   ctx:'Jornada de Puertas Abiertas · 23 de septiembre',
   img:'img/control-por-gestos.webp', url:GH+'control-por-gestos/', repo:REPO+'control-por-gestos', online:true, camera:true,
+  extra:[['descargar ROMs','https://drive.google.com/drive/folders/17qN7pQiP_1hZRgjJR3os8QRixz6uJR_i']],
   short:'Juegos de consolas clásicas que se manejan con la mano frente a la cámara.',
   desc:['Recurso creado para difundir las carreras del Departamento de Matemática y Computación en la Jornada de Puertas Abiertas de la facultad. La cámara detecta la mano y la convierte en controles para jugar sin tocar nada.',
         'En **OutRun** la mano funciona como volante: el ángulo gira, el puño acelera y la palma cambia de marcha. En **Star Force** la mano mueve la nave, con disparo automático. Un gesto de OK sostenido equivale a START. La primera versión, en Python, se portó a JavaScript para que se juegue online.'],
-  notice:'Necesita permiso de cámara. Cada persona carga su propia ROM del juego: el sitio no incluye ROMs.',
+  notice:'Necesita permiso de cámara. Cada persona carga su propia ROM del juego: el sitio no incluye ROMs. Podés <a href="https://drive.google.com/drive/folders/17qN7pQiP_1hZRgjJR3os8QRixz6uJR_i" target="_blank" rel="noopener">descargarlas desde esta carpeta de Drive ↗</a>.',
   tech:['MediaPipe (detección de manos) en un Web Worker','EmulatorJS','JavaScript','GitHub Actions + Pages'],
   tags:['visión por computadora','cámara','retro'],
   ficha:{dest:'Estudiantes de secundaria que visitan la facultad; aspirantes a carreras de Matemática y Computación.',cont:'Visión por computadora, interacción persona-computadora, emulación.',aula:'Demostración que abre la pregunta “¿cómo reconoce la cámara una mano?”; después, explicar los puntos de referencia que detecta MediaPipe.'}
 },
 {
   id:'brain-challenge', title:'Brain Challenge 3D', tipo:'juego', ie2:true,
-  ctx:'Educación Informática II',
+  ctx:'Informática Educativa II',
   img:'img/juegos-didacticos.webp', url:GH+'juegos-didacticos/', repo:REPO+'juegos-didacticos', online:true,
   short:'Tres juegos en 3D que entrenan memoria, razonamiento espacial y planificación.',
   desc:['Videojuego educativo en tres dimensiones con una **grilla de memoria 3D**, un **cubo Rubik** funcional y un **Ta-Te-Ti de 3 fichas** con oponente de IA. Está pensado para niños y también para adultos mayores.',
@@ -488,7 +483,7 @@ const PROJECTS=[
 },
 {
   id:'malvinas', title:'Malvinas: historia de un reclamo', tipo:'media', ie2:true, video:true,
-  ctx:'Educación Informática II · contenido multimedia',
+  ctx:'Informática Educativa II · contenido multimedia',
   img:'img/malvinas.webp', url:'https://www.youtube-nocookie.com/embed/wPDaOtztcig', watch:'https://youtu.be/wPDaOtztcig', online:true,
   short:'Video de unos 4 minutos sobre el reclamo de soberanía argentino por las islas.',
   desc:['Animación y video que relata la historia del reclamo de soberanía argentino sobre las islas Malvinas y rescata el concepto de soberanía.',
@@ -499,8 +494,8 @@ const PROJECTS=[
 },
 {
   id:'siderea', title:'SiDeReA · Reutilización de agua', tipo:'sim', ie2:true,
-  ctx:'Educación Informática II · EPET N°1',
-  img:'img/reciclado-agua.webp', url:GH+'proyecto-reciclado-agua/', repo:REPO+'proyecto-reciclado-agua', online:false,
+  ctx:'Informática Educativa II · EPET N°1',
+  img:'img/reciclado-agua.webp', url:GH+'SiDeReA/', repo:REPO+'SiDeReA', online:true,
   short:'Simulador del consumo de agua de una casa y de cuánto se ahorra al reutilizarla.',
   desc:['Sistema Domiciliario de Reutilización de Agua: un simulador web que muestra el corte de una casa con patio, cocina, baño y lavadero. Cada artefacto es clickeable y suma litros a un contador.',
         'Compara el modo **tradicional**, donde toda el agua va al pozo cloacal, con el modo **reciclado**, donde el agua gris de la ducha, las manos y el lavarropas se guarda en un tanque y alimenta el inodoro y el riego. Puede simular un día, una semana o un mes, con métricas en tiempo real.'],
@@ -510,7 +505,7 @@ const PROJECTS=[
 },
 {
   id:'tateti-online', title:'Ta-Te-Ti 3D online', tipo:'juego', ie2:true,
-  ctx:'Educación Informática II',
+  ctx:'Informática Educativa II',
   img:'img/tateti-online.webp', url:GH+'tateti-online/', repo:REPO+'tateti-online', online:true,
   short:'El Ta-Te-Ti de 3 fichas de Brain Challenge, para jugar entre dos dispositivos.',
   desc:['Versión online del Ta-Te-Ti 3D de 3 fichas: primero se colocan las fichas y después se mueven a casillas vecinas, solo en horizontal o vertical.',
@@ -523,7 +518,7 @@ const PROJECTS=[
 },
 {
   id:'carrera-de-la-vida', title:'La Carrera de la Vida', tipo:'juego', ie2:true,
-  ctx:'Educación Informática II · jugabilidad',
+  ctx:'Informática Educativa II · jugabilidad',
   img:'img/carrera-de-la-vida.webp', url:GH+'carrera-de-la-vida/', repo:REPO+'carrera-de-la-vida', online:true,
   short:'Juego de mesa para el navegador: estudiá, trabajá y jubilate con la mayor fortuna.',
   desc:['Juego de tablero con ruleta para 2 a 6 personas, en la misma tablet o compu, contra la computadora u online, cada uno desde su casa. Gana quien se jubila con más plata.',
@@ -611,7 +606,7 @@ function renderDetail(id){
     </div>
     ${p.notice?`<div class="notice">${p.notice}</div>`:''}
     <div style="margin-top:32px" id="projEd"></div>
-    <div class="edhint">tip: README · ficha en bloques · stack — clic en el texto para saltar la animación</div>
+    <div class="edhint">tip: README · stack — clic en el texto para saltar la animación</div>
     <nav class="pager" aria-label="Otros proyectos">
       <a href="#proyecto-${prev.id}"><small>← anterior</small>${prev.title}</a>
       <a href="#proyecto-${next.id}"><small>siguiente →</small>${next.title}</a>
@@ -634,12 +629,10 @@ function route(){
   if(view==='sobre-mi'&&!aboutMounted){aboutMounted=true;mountEditor($('#aboutEd'),ABOUT_TABS)}
   $$('[data-nav]').forEach(a=>a.classList.toggle('active',a.dataset.nav===(view==='proyecto'?'proyectos':view)));
   document.title=(view==='proyecto'?(byId(arg)||{}).title:TITLES[view])+' · Thiago Llovio Villarías';
-  $('#links').classList.remove('open'); $('#burger').setAttribute('aria-expanded','false');
   window.scrollTo({top:0,behavior:'instant'});
   observe();
 }
 window.addEventListener('hashchange',route);
-$('#burger').addEventListener('click',()=>{const o=$('#links').classList.toggle('open');$('#burger').setAttribute('aria-expanded',o)});
 
 /* =========================================================
    EFECTOS
@@ -660,10 +653,9 @@ const NF_INFO=[
   ['OS','Profesorado en Computación'],
   ['Host','UNLPam · FCEyN']
   ,['Año','3.º'],
-  ['Kernel','Educación Informática II'],
+  ['Kernel','Informática Educativa II'],
   ['Uptime','desde 2024'],
-  ['Shell','bash · Linux de uso diario'],
-  ['Enfoque','aprendizaje significativo'],
+  ['Shell','bash · Linux'],
   '',
   ['#2e3440','#ff6b6b','#8ae234','#fce94f','#729fcf','#d49bff','#34e2e2','#eef1f7'].map(c=>`<span class="sw" style="background:${c}"></span>`).join('')
 ].map(l=>Array.isArray(l)?`<span class="c bd">${l[0]}</span><span class="w">: ${l[1]}</span>`:l).join('\n');
@@ -672,8 +664,7 @@ const LSCOL={juego:'g',sim:'y','3d':'m',media:'r',datos:'c'};
 const LS=PROJECTS.map(p=>`<span class="${LSCOL[p.tipo]} bd">${p.id.replace(/-/g,'‑')}/</span>`).join('  ')+'\n';
 const TSTEPS=[
   {cmd:'neofetch',out:NEOFETCH},
-  {cmd:'ls proyectos/',out:LS},
-  {cmd:'cat enfoque.txt',out:'<span class="y">transformar el conocimiento tecnológico</span>\n<span class="y">en una herramienta de aprendizaje significativo.</span>\n'}
+  {cmd:'ls proyectos/',out:LS}
 ];
 (function(){
   const el=$('#typed');
@@ -761,7 +752,7 @@ const ABOUT_TABS=[
   'Soy estudiante de **3.º año del Profesorado Universitario en Computación** en la Universidad Nacional de La Pampa (UNLPam), carrera que inicié en 2024.','',
   'Mi vínculo con la informática comenzó desde la práctica: **armado y reparación de equipos, soporte técnico** y cursos de desarrollo web básico con HTML y CSS. Si bien inicié cursando simultáneamente el PUC y la Tecnicatura en Informática de Gestión, elegí volcarme de lleno al profesorado porque valoro profundamente la **presencialidad**, el intercambio cotidiano y el contacto con las personas en el aula.','',
   '> Vi en las materias pedagógicas una oportunidad para desafiar y enriquecer la mirada estructurada propia de la computación y la matemática, formándome no solo en lo técnico, sino en cómo transformar el conocimiento tecnológico en una herramienta de **aprendizaje significativo**.','',
-  'En este e-portfolio comparto los proyectos, recursos educativos y producciones desarrolladas a lo largo de la cátedra **Educación Informática II**. Podés recorrerlos en [proyectos](#proyectos).','',
+  'En este e-portfolio comparto los proyectos, recursos educativos y producciones desarrolladas a lo largo de la cátedra **Informática Educativa II**. Podés recorrerlos en [proyectos](#proyectos).','',
   '<!-- Santa Rosa, La Pampa · UNLPam · FCEyN -->'
  ])},
  {name:'trayectoria',lang:'Línea de tiempo',dot:'#ffb86c',html:`<div style="padding:28px 28px 20px"><div class="timeline">
@@ -769,11 +760,11 @@ const ABOUT_TABS=[
    <div class="tl"><div class="when">2021</div><h4>Curso de Desarrollo Web · Coderhouse</h4><p>Primeros pasos con HTML y CSS.</p></div>
    <div class="tl"><div class="when">2021 – 2022</div><h4>Soporte técnico y atención a usuarios · remoto</h4><p>Atención de una comunidad de 500 a 600 usuarios por Telegram y Discord, con un equipo radicado en Eslovaquia.</p></div>
    <div class="tl"><div class="when">2024</div><h4>Ingreso al Profesorado en Computación · UNLPam</h4><p>En paralelo con la Tecnicatura en Informática de Gestión, hasta elegir el profesorado.</p></div>
-   <div class="tl"><div class="when">2026</div><h4>Educación Informática II</h4><p>Videojuegos, simuladores, un museo virtual y producciones multimedia. <a href="#proyectos">Ver los proyectos →</a></p></div>
+   <div class="tl"><div class="when">2026</div><h4>Informática Educativa II</h4><p>Videojuegos, simuladores, un museo virtual y producciones multimedia. <a href="#proyectos">Ver los proyectos →</a></p></div>
   </div></div>`},
  {name:'competencias.json',lang:'JSON',dot:'#fce94f',lines:json({
   'soporte_técnico':['diagnóstico y resolución de incidencias','armado de PC de escritorio','instalación de Windows y Linux'],
-  'sistemas_operativos':['Linux (uso diario)','Windows'],
+  'sistemas_operativos':['Linux','Windows'],
   'programación_y_web':['Python','HTML','CSS','Pascal'],
   'inteligencia_artificial':'uso avanzado para prototipado, automatización y documentación',
   'atención_a_usuarios':'comunidades en línea, soporte remoto',
@@ -785,24 +776,16 @@ let aboutMounted=false;
 
 /* ---------- Proyectos ---------- */
 function projectTabs(p,rel){
-  const go=p.watch||p.url, link=p.online?go:p.repo;
+  const go=p.watch||p.url;
   const readme=['# '+p.title,'<!-- '+p.ctx+' -->','',...p.desc.flatMap(d=>[d,'']),'## Enlaces'];
   if(p.online)readme.push(`- [${p.video?'ver el video':'abrir en pantalla completa'}](${go})`);
   if(p.repo)readme.push(`- [código en GitHub](${p.repo})`);
   (p.extra||[]).forEach(([t,u])=>readme.push(`- [${t}](${u})`));
   if(rel)readme.push(`- [relacionado: ${rel.title}](#proyecto-${rel.id})`);
-  const blocks=`<div class="blocks">
-    <div class="blk hat ev">al llevar <span class="in">${p.title}</span> al aula</div>
-    <div class="blk lk">para <span class="in">${p.ficha.dest}</span></div>
-    <div class="blk op">enseñar <span class="in">${p.ficha.cont}</span></div>
-    <div class="blk ct">en clase <span class="in">${p.ficha.aula}</span></div>
-    ${link?`<a class="blk mo end" href="${link}" target="_blank" rel="noopener">${p.online?(p.video?'reproducir video ▶':'abrir recurso ▶'):'ver código ▶'}</a>`:''}
-  </div>`;
   const stack={proyecto:p.id,contexto:p.ctx,tipo:TIPOS[p.tipo],estado:p.online?'online':'en preparación',herramientas:p.tech,etiquetas:p.tags};
   if(p.online)stack.demo=go; if(p.repo)stack.repo=p.repo;
   return [
     {name:'README.md',lang:'Markdown',dot:'#34e2e2',src:readme},
-    {name:'ficha.bloques',lang:'Bloques',dot:'#f08c1a',html:blocks},
     {name:'stack.json',lang:'JSON',dot:'#fce94f',lines:json(stack)}
   ];
 }
