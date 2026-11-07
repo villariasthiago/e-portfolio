@@ -60,8 +60,13 @@ header.top{position:sticky;top:0;z-index:50;background:rgba(6,8,14,.72);backdrop
 .kbtn{font-family:var(--mono);font-size:.75rem;color:var(--muted);border:1px solid var(--line2);background:var(--surface);border-radius:8px;padding:6px 10px;cursor:pointer;display:flex;align-items:center;gap:6px}
 .kbtn:hover{color:var(--text);border-color:var(--cyan)}
 .kbtn kbd{font-family:inherit;background:var(--bg);border:1px solid var(--line2);border-radius:4px;padding:0 5px}
-@media(max-width:900px){.kbtn{display:none}}
-@media(max-width:560px){.nav{gap:8px}.brand>span:last-child{display:none}.links a{padding:8px 9px;font-size:.8rem}.links a .n{display:none}}
+.burger{display:none;margin-left:auto;background:none;border:1px solid var(--line2);color:var(--text);border-radius:8px;width:40px;height:40px;cursor:pointer;font-size:1.1rem}
+@media(max-width:900px){
+  .burger{display:block}.kbtn{display:none}
+  .links{position:fixed;top:64px;left:0;right:0;flex-direction:column;background:var(--bg2);border-bottom:1px solid var(--line);padding:12px 24px 20px;display:none}
+  .links.open{display:flex}
+  .links a{font-size:1rem;padding:12px}
+}
 
 /* ---------- VIEWS ---------- */
 main{min-height:calc(100vh - 64px)}
@@ -84,10 +89,10 @@ section.block{padding:72px 0}
 .copybtn:hover{color:var(--cyan);border-color:var(--cyan)}
 
 /* ---------- HERO ---------- */
-.hero{padding:28px 0 56px;display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center}
+.hero{padding:80px 0 56px;display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center}
 .hero h1{margin:16px 0 18px}
 .hero .lead{margin-bottom:28px}
-@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:20px}}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:48px}}
 .term{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,.8)}
 .term .bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid var(--line);background:var(--bg2)}
 .term .bar i{width:11px;height:11px;border-radius:50%;background:#2b3450}
@@ -316,6 +321,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
 <header class="top">
   <nav class="wrap nav" aria-label="Principal">
     <a href="#inicio" class="brand" aria-label="Inicio"><span class="logo">TV</span><span>thiago<span class="muted">.dev</span><span class="cursor">_</span></span></a>
+    <button class="burger" aria-label="Abrir menú" aria-expanded="false" id="burger">☰</button>
     <div class="links" id="links">
       <a href="#inicio" data-nav="inicio"><span class="n">01</span>inicio</a>
       <a href="#sobre-mi" data-nav="sobre-mi"><span class="n">02</span>sobre mí</a>
@@ -460,11 +466,10 @@ const PROJECTS=[
   id:'control-por-gestos', title:'Control por gestos', tipo:'juego', featured:true, ie2:true,
   ctx:'Jornada de Puertas Abiertas · 23 de septiembre',
   img:'img/control-por-gestos.webp', url:GH+'control-por-gestos/', repo:REPO+'control-por-gestos', online:true, camera:true,
-  extra:[['descargar ROMs','https://drive.google.com/drive/folders/17qN7pQiP_1hZRgjJR3os8QRixz6uJR_i']],
   short:'Juegos de consolas clásicas que se manejan con la mano frente a la cámara.',
   desc:['Recurso creado para difundir las carreras del Departamento de Matemática y Computación en la Jornada de Puertas Abiertas de la facultad. La cámara detecta la mano y la convierte en controles para jugar sin tocar nada.',
         'En **OutRun** la mano funciona como volante: el ángulo gira, el puño acelera y la palma cambia de marcha. En **Star Force** la mano mueve la nave, con disparo automático. Un gesto de OK sostenido equivale a START. La primera versión, en Python, se portó a JavaScript para que se juegue online.'],
-  notice:'Necesita permiso de cámara. Cada persona carga su propia ROM del juego: el sitio no incluye ROMs. Podés <a href="https://drive.google.com/drive/folders/17qN7pQiP_1hZRgjJR3os8QRixz6uJR_i" target="_blank" rel="noopener">descargarlas desde esta carpeta de Drive ↗</a>.',
+  notice:'Necesita permiso de cámara. Cada persona carga su propia ROM del juego: el sitio no incluye ROMs.',
   tech:['MediaPipe (detección de manos) en un Web Worker','EmulatorJS','JavaScript','GitHub Actions + Pages'],
   tags:['visión por computadora','cámara','retro'],
   ficha:{dest:'Estudiantes de secundaria que visitan la facultad; aspirantes a carreras de Matemática y Computación.',cont:'Visión por computadora, interacción persona-computadora, emulación.',aula:'Demostración que abre la pregunta “¿cómo reconoce la cámara una mano?”; después, explicar los puntos de referencia que detecta MediaPipe.'}
@@ -495,7 +500,7 @@ const PROJECTS=[
 {
   id:'siderea', title:'SiDeReA · Reutilización de agua', tipo:'sim', ie2:true,
   ctx:'Educación Informática II · EPET N°1',
-  img:'img/reciclado-agua.webp', url:GH+'SiDeReA/', repo:REPO+'SiDeReA', online:true,
+  img:'img/reciclado-agua.webp', url:GH+'proyecto-reciclado-agua/', repo:REPO+'proyecto-reciclado-agua', online:false,
   short:'Simulador del consumo de agua de una casa y de cuánto se ahorra al reutilizarla.',
   desc:['Sistema Domiciliario de Reutilización de Agua: un simulador web que muestra el corte de una casa con patio, cocina, baño y lavadero. Cada artefacto es clickeable y suma litros a un contador.',
         'Compara el modo **tradicional**, donde toda el agua va al pozo cloacal, con el modo **reciclado**, donde el agua gris de la ducha, las manos y el lavarropas se guarda en un tanque y alimenta el inodoro y el riego. Puede simular un día, una semana o un mes, con métricas en tiempo real.'],
@@ -606,7 +611,7 @@ function renderDetail(id){
     </div>
     ${p.notice?`<div class="notice">${p.notice}</div>`:''}
     <div style="margin-top:32px" id="projEd"></div>
-    <div class="edhint">tip: README · stack — clic en el texto para saltar la animación</div>
+    <div class="edhint">tip: README · ficha en bloques · stack — clic en el texto para saltar la animación</div>
     <nav class="pager" aria-label="Otros proyectos">
       <a href="#proyecto-${prev.id}"><small>← anterior</small>${prev.title}</a>
       <a href="#proyecto-${next.id}"><small>siguiente →</small>${next.title}</a>
@@ -629,10 +634,12 @@ function route(){
   if(view==='sobre-mi'&&!aboutMounted){aboutMounted=true;mountEditor($('#aboutEd'),ABOUT_TABS)}
   $$('[data-nav]').forEach(a=>a.classList.toggle('active',a.dataset.nav===(view==='proyecto'?'proyectos':view)));
   document.title=(view==='proyecto'?(byId(arg)||{}).title:TITLES[view])+' · Thiago Llovio Villarías';
+  $('#links').classList.remove('open'); $('#burger').setAttribute('aria-expanded','false');
   window.scrollTo({top:0,behavior:'instant'});
   observe();
 }
 window.addEventListener('hashchange',route);
+$('#burger').addEventListener('click',()=>{const o=$('#links').classList.toggle('open');$('#burger').setAttribute('aria-expanded',o)});
 
 /* =========================================================
    EFECTOS
@@ -778,16 +785,24 @@ let aboutMounted=false;
 
 /* ---------- Proyectos ---------- */
 function projectTabs(p,rel){
-  const go=p.watch||p.url;
+  const go=p.watch||p.url, link=p.online?go:p.repo;
   const readme=['# '+p.title,'<!-- '+p.ctx+' -->','',...p.desc.flatMap(d=>[d,'']),'## Enlaces'];
   if(p.online)readme.push(`- [${p.video?'ver el video':'abrir en pantalla completa'}](${go})`);
   if(p.repo)readme.push(`- [código en GitHub](${p.repo})`);
   (p.extra||[]).forEach(([t,u])=>readme.push(`- [${t}](${u})`));
   if(rel)readme.push(`- [relacionado: ${rel.title}](#proyecto-${rel.id})`);
+  const blocks=`<div class="blocks">
+    <div class="blk hat ev">al llevar <span class="in">${p.title}</span> al aula</div>
+    <div class="blk lk">para <span class="in">${p.ficha.dest}</span></div>
+    <div class="blk op">enseñar <span class="in">${p.ficha.cont}</span></div>
+    <div class="blk ct">en clase <span class="in">${p.ficha.aula}</span></div>
+    ${link?`<a class="blk mo end" href="${link}" target="_blank" rel="noopener">${p.online?(p.video?'reproducir video ▶':'abrir recurso ▶'):'ver código ▶'}</a>`:''}
+  </div>`;
   const stack={proyecto:p.id,contexto:p.ctx,tipo:TIPOS[p.tipo],estado:p.online?'online':'en preparación',herramientas:p.tech,etiquetas:p.tags};
   if(p.online)stack.demo=go; if(p.repo)stack.repo=p.repo;
   return [
     {name:'README.md',lang:'Markdown',dot:'#34e2e2',src:readme},
+    {name:'ficha.bloques',lang:'Bloques',dot:'#f08c1a',html:blocks},
     {name:'stack.json',lang:'JSON',dot:'#fce94f',lines:json(stack)}
   ];
 }
