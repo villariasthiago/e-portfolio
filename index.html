@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thiago Llovio Villarías · e-portfolio</title>
+<meta name="description" content="E-portfolio de Thiago Llovio Villarías, estudiante del Profesorado Universitario en Computación (UNLPam). Recursos educativos para docentes de Computación, Tecnología e Informática.">
+<meta name="theme-color" content="#06080e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2306080e'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='28' font-weight='700' text-anchor='middle' fill='%2346e3c9'%3ETV%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#06080e; --bg2:#0a0e18; --surface:#0e1322; --surface2:#131a2d;
+  --line:#1d2640; --line2:#2a3557;
+  --text:#e7ecf7; --muted:#8e99b3; --dim:#5d6886;
+  --cyan:#46e3c9; --violet:#8f7bff; --amber:#ffb547; --pink:#ff5c8a;
+  --glow:0 0 0 1px rgba(70,227,201,.35),0 10px 40px -10px rgba(70,227,201,.35);
+  --r:14px; --mono:'JetBrains Mono',ui-monospace,monospace; --sans:'Space Grotesk',system-ui,sans-serif;
+  --max:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-2;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:56px 56px;opacity:.28;mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 30%,transparent 75%)}
+body::after{content:"";position:fixed;z-index:-1;width:900px;height:600px;left:50%;top:-320px;transform:translateX(-50%);
+  background:radial-gradient(closest-side,rgba(143,123,255,.22),transparent),radial-gradient(closest-side at 70% 60%,rgba(70,227,201,.16),transparent);filter:blur(20px);pointer-events:none}
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%;display:block}
+::selection{background:var(--violet);color:#fff}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono)}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}
+.eyebrow::before{content:"// ";color:var(--dim)}
+h1,h2,h3{line-height:1.15;letter-spacing:-.02em;font-weight:700}
+h1{font-size:clamp(2.4rem,5.6vw,4.2rem)}
+h2{font-size:clamp(1.7rem,3.4vw,2.5rem)}
+h3{font-size:1.2rem}
+.grad{background:linear-gradient(90deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.muted{color:var(--muted)}
+.lead{font-size:1.15rem;color:var(--muted);max-width:62ch}
+
+/* ---------- NAV ---------- */
+header.top{position:sticky;top:0;z-index:50;background:rgba(6,8,14,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:18px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-weight:700;color:var(--text);font-size:.95rem}
+.brand:hover{text-decoration:none}
+.brand .logo{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,var(--cyan),var(--violet));color:#06080e;font-size:.85rem}
+.brand .cursor{color:var(--cyan);animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.links{display:flex;gap:4px;margin-left:auto}
+.links a{font-family:var(--mono);font-size:.84rem;color:var(--muted);padding:8px 12px;border-radius:8px;transition:.15s}
+.links a:hover{color:var(--text);background:var(--surface);text-decoration:none}
+.links a.active{color:var(--cyan);background:rgba(70,227,201,.08)}
+.links a .n{color:var(--dim);margin-right:4px}
+.kbtn{font-family:var(--mono);font-size:.75rem;color:var(--muted);border:1px solid var(--line2);background:var(--surface);border-radius:8px;padding:6px 10px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.kbtn:hover{color:var(--text);border-color:var(--cyan)}
+.kbtn kbd{font-family:inherit;background:var(--bg);border:1px solid var(--line2);border-radius:4px;padding:0 5px}
+@media(max-width:900px){.kbtn{display:none}}
+@media(max-width:560px){.nav{gap:8px}.brand>span:last-child{display:none}.links a{padding:8px 9px;font-size:.8rem}.links a .n{display:none}}
+
+/* ---------- VIEWS ---------- */
+main{min-height:calc(100vh - 64px)}
+.view{display:none;animation:fade .35s ease}
+.view.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+section.block{padding:72px 0}
+.head{display:flex;flex-direction:column;gap:12px;margin-bottom:36px}
+
+/* ---------- BUTTONS ---------- */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.88rem;font-weight:500;padding:12px 18px;border-radius:10px;border:1px solid var(--line2);background:var(--surface);color:var(--text);cursor:pointer;transition:.18s}
+.btn:hover{text-decoration:none;border-color:var(--cyan);transform:translateY(-1px)}
+.btn.primary{background:var(--cyan);color:#05120f;border-color:var(--cyan);font-weight:700}
+.btn.primary:hover{box-shadow:var(--glow)}
+.btn.sm{padding:8px 12px;font-size:.8rem}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+.mailrow{margin-top:20px;font-family:var(--mono);font-size:.88rem;color:var(--muted);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.mailrow .p{color:var(--cyan)}
+.copybtn{font-family:var(--mono);font-size:.72rem;color:var(--muted);background:var(--surface);border:1px solid var(--line2);border-radius:6px;padding:4px 9px;cursor:pointer}
+.copybtn:hover{color:var(--cyan);border-color:var(--cyan)}
+
+/* ---------- HERO ---------- */
+.hero{padding:28px 0 56px;display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center}
+.hero h1{margin:16px 0 18px}
+.hero .lead{margin-bottom:28px}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:20px}}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,.8)}
+.term .bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid var(--line);background:var(--bg2)}
+.term .bar i{width:11px;height:11px;border-radius:50%;background:#2b3450}
+.term .bar i:nth-child(1){background:#ff5f57}.term .bar i:nth-child(2){background:#febc2e}.term .bar i:nth-child(3){background:#28c840}
+.term .bar span{margin-left:8px;font-family:var(--mono);font-size:.75rem;color:var(--dim)}
+.term pre{font-family:var(--mono);font-size:.86rem;line-height:1.75;padding:18px 18px 22px;min-height:290px;white-space:pre-wrap;color:var(--muted)}
+.term .p{color:var(--cyan)}.term .c{color:var(--text)}.term .v{color:var(--violet)}.term .a{color:var(--amber)}
+.caret{display:inline-block;width:8px;height:1.05em;background:var(--cyan);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.stat{background:var(--bg2);padding:22px 20px}
+.stat b{display:block;font-size:2rem;font-weight:700;font-family:var(--mono);color:var(--text)}
+.stat span{font-size:.85rem;color:var(--muted)}
+@media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- CARDS ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
+.card{position:relative;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s;color:inherit}
+.card:hover{text-decoration:none;transform:translateY(-4px);border-color:rgba(70,227,201,.6);box-shadow:var(--glow)}
+.card:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--bg2);border-bottom:1px solid var(--line)}
+.thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card:hover .thumb img{transform:scale(1.05)}
+.thumb .play{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:.25s;background:linear-gradient(transparent,rgba(6,8,14,.7))}
+.card:hover .thumb .play{opacity:1}
+.play span{font-family:var(--mono);font-size:.8rem;background:var(--cyan);color:#05120f;padding:8px 14px;border-radius:999px;font-weight:700}
+.badge{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:.7rem;padding:4px 9px;border-radius:999px;background:rgba(6,8,14,.8);border:1px solid var(--line2);color:var(--text);backdrop-filter:blur(6px)}
+.badge.live::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#28c840;margin-right:6px;box-shadow:0 0 8px #28c840}
+.badge.off::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--amber);margin-right:6px}
+.cbody{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+.cbody .ctx{font-family:var(--mono);font-size:.72rem;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+.cbody p{color:var(--muted);font-size:.95rem}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.tag{font-family:var(--mono);font-size:.7rem;padding:3px 8px;border-radius:6px;background:var(--bg2);border:1px solid var(--line);color:var(--muted)}
+.tag.t-juego{color:var(--cyan)}.tag.t-sim{color:var(--amber)}.tag.t-3d{color:var(--violet)}.tag.t-media{color:var(--pink)}.tag.t-datos{color:#7cc4ff}
+
+/* ---------- FILTERS ---------- */
+.toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:28px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--mono);font-size:.8rem;padding:8px 14px;border-radius:999px;border:1px solid var(--line2);background:var(--surface);color:var(--muted);cursor:pointer;transition:.15s}
+.chip:hover{color:var(--text)}
+.chip.on{background:rgba(70,227,201,.12);border-color:var(--cyan);color:var(--cyan)}
+.chip .k{color:var(--dim);margin-left:4px}
+.search{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line2);border-radius:10px;padding:0 12px;min-width:240px}
+.search:focus-within{border-color:var(--cyan)}
+.search input{background:none;border:0;outline:0;color:var(--text);font-family:var(--mono);font-size:.85rem;padding:10px 0;width:100%}
+@media(max-width:700px){.search{margin-left:0;width:100%}}
+.empty{display:none;text-align:center;padding:48px;color:var(--muted);font-family:var(--mono);border:1px dashed var(--line2);border-radius:var(--r)}
+
+/* ---------- PROJECT DETAIL ---------- */
+.crumbs{font-family:var(--mono);font-size:.8rem;color:var(--dim);padding:28px 0 10px}
+.crumbs a{color:var(--muted)}
+.dhead{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:flex-end;margin-bottom:22px}
+.dhead h1{font-size:clamp(2rem,4vw,3rem);margin:8px 0 6px}
+.viewer{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,.9)}
+.viewer .bar{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg2);border-bottom:1px solid var(--line)}
+.viewer .dots{display:flex;gap:6px}.viewer .dots i{width:10px;height:10px;border-radius:50%;background:#2b3450}
+.viewer .url{flex:1;font-family:var(--mono);font-size:.76rem;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:6px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.viewer .url b{color:#28c840;font-weight:400}
+.viewer .stage{position:relative;height:min(74vh,760px);background:#000}
+.viewer.video .stage{height:auto;aspect-ratio:16/9}
+.viewer iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}
+.loader{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);color:var(--muted);font-size:.85rem;pointer-events:none}
+.loader::before{content:"";width:28px;height:28px;border:2px solid var(--line2);border-top-color:var(--cyan);border-radius:50%;animation:spin .8s linear infinite;margin-bottom:60px;position:absolute}
+@keyframes spin{to{transform:rotate(360deg)}}
+.offline{position:absolute;inset:0}
+.offline img{width:100%;height:100%;object-fit:cover;filter:brightness(.28) saturate(.7) blur(5px);transform:scale(1.05)}
+.offline div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:24px}
+.offline b{font-family:var(--mono);color:var(--amber)}
+.notice{display:flex;gap:12px;align-items:flex-start;margin-top:14px;padding:14px 16px;border-radius:10px;background:rgba(255,181,71,.07);border:1px solid rgba(255,181,71,.3);color:#f4d9ad;font-size:.92rem}
+.notice::before{content:"!";flex:none;width:22px;height:22px;border-radius:50%;background:var(--amber);color:#1a1000;font-weight:700;display:grid;place-items:center;font-family:var(--mono);font-size:.8rem}
+.dgrid{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;margin-top:36px}
+@media(max-width:900px){.dgrid{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px}
+.panel h3{margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.panel h3::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--cyan)}
+.panel p+p{margin-top:12px}
+.panel p,.panel li{color:var(--muted)}
+.panel ul{padding-left:18px;display:flex;flex-direction:column;gap:6px}
+dl.ficha{display:grid;grid-template-columns:auto 1fr;gap:12px 18px}
+dl.ficha dt{font-family:var(--mono);font-size:.75rem;color:var(--dim);text-transform:uppercase;letter-spacing:.06em;padding-top:3px}
+dl.ficha dd{color:var(--muted);font-size:.95rem}
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:36px 0 80px}
+.pager a{display:block;padding:18px 20px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);color:var(--text)}
+.pager a:hover{text-decoration:none;border-color:var(--cyan)}
+.pager small{display:block;font-family:var(--mono);color:var(--dim);font-size:.75rem}
+.pager a:last-child{text-align:right}
+
+/* ---------- ABOUT ---------- */
+.about>*,.hero>*,.dgrid>*{min-width:0}
+.about{display:grid;grid-template-columns:380px 1fr;gap:56px;align-items:start}
+@media(max-width:900px){.about{grid-template-columns:1fr}}
+.portrait{position:sticky;top:96px}
+.portrait .frame{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line2);aspect-ratio:4/5}
+.portrait .frame img{width:100%;height:100%;object-fit:cover}
+.portrait .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(6,8,14,.85))}
+.portrait .cap{position:absolute;left:18px;bottom:16px;z-index:2;font-family:var(--mono);font-size:.8rem}
+.portrait .cap b{display:block;font-family:var(--sans);font-size:1.15rem;color:#fff}
+.portrait .meta{margin-top:16px;display:flex;flex-direction:column;gap:8px;font-family:var(--mono);font-size:.82rem;color:var(--muted)}
+.portrait .meta span::before{content:"› ";color:var(--cyan)}
+@media(max-width:900px){.portrait{position:static;max-width:380px}}
+.prose p{color:var(--muted);font-size:1.06rem;margin-bottom:16px}
+.prose p strong{color:var(--text);font-weight:600}
+.quote{margin:28px 0;padding:22px 24px;border-left:3px solid var(--violet);background:linear-gradient(90deg,rgba(143,123,255,.1),transparent);border-radius:0 12px 12px 0;font-size:1.15rem;color:var(--text)}
+.timeline{position:relative;margin:24px 0 8px;padding-left:28px}
+.timeline::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--cyan),var(--violet))}
+.tl{position:relative;padding:0 0 26px;opacity:0;animation:tlin .5s ease forwards}
+.tl:nth-child(2){animation-delay:.12s}.tl:nth-child(3){animation-delay:.24s}.tl:nth-child(4){animation-delay:.36s}.tl:nth-child(5){animation-delay:.48s}
+@keyframes tlin{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:none}}
+.tl::before{content:"";position:absolute;left:-28px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan)}
+.tl .when{font-family:var(--mono);font-size:.76rem;color:var(--cyan)}
+.tl h4{font-size:1.05rem;margin:2px 0 4px}
+.tl p{color:var(--muted);font-size:.95rem}
+.skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:16px}
+.skill{padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.skill b{display:block;font-size:.95rem;margin-bottom:4px}
+.skill span{color:var(--muted);font-size:.88rem}
+
+/* ---------- RECURSOS ---------- */
+.res{display:flex;flex-direction:column;gap:14px}
+details.rcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:border-color .2s}
+details.rcard[open]{border-color:var(--line2)}
+details.rcard summary{list-style:none;display:grid;grid-template-columns:120px 1fr auto;gap:18px;align-items:center;padding:14px 18px 14px 14px;cursor:pointer}
+details.rcard summary::-webkit-details-marker{display:none}
+details.rcard summary img{width:120px;aspect-ratio:16/9;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+details.rcard summary h3{font-size:1.08rem}
+details.rcard summary p{color:var(--muted);font-size:.88rem}
+details.rcard summary .arr{font-family:var(--mono);color:var(--dim);transition:.2s}
+details.rcard[open] summary .arr{transform:rotate(90deg);color:var(--cyan)}
+details.rcard .rbody{padding:4px 22px 22px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;border-top:1px solid var(--line);padding-top:18px}
+details.rcard .rbody h4{font-family:var(--mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:var(--cyan);margin-bottom:6px}
+details.rcard .rbody p{color:var(--muted);font-size:.93rem}
+details.rcard .rfoot{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:10px}
+@media(max-width:800px){details.rcard .rbody{grid-template-columns:1fr}details.rcard summary{grid-template-columns:84px 1fr auto}details.rcard summary img{width:84px}}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+
+/* ---------- CURSADA ---------- */
+.course{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.act{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:12px}
+.act .top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.act .num{font-family:var(--mono);font-size:.78rem;color:var(--dim)}
+.act .date{font-family:var(--mono);font-size:.72rem;padding:3px 9px;border-radius:999px;border:1px solid var(--line2);color:var(--muted)}
+.act h3{font-size:1.15rem}
+.act p{color:var(--muted);font-size:.94rem}
+.act ol{padding-left:18px;color:var(--muted);font-size:.9rem;display:flex;flex-direction:column;gap:4px}
+.act .done{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap;padding-top:8px;border-top:1px dashed var(--line2)}
+.act.next{border-style:dashed;align-items:center;justify-content:center;text-align:center;color:var(--dim);min-height:200px}
+.subh{margin:56px 0 20px;font-size:1.4rem}
+
+/* ---------- CONTACTO ---------- */
+.contact{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.ccard{display:flex;flex-direction:column;gap:8px;padding:24px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);color:var(--text);transition:.2s}
+.ccard:hover{text-decoration:none;border-color:var(--cyan);transform:translateY(-3px)}
+.ccard .ic{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;background:var(--bg2);border:1px solid var(--line2);font-family:var(--mono);color:var(--cyan);font-weight:700}
+.ccard small{color:var(--muted);font-family:var(--mono);font-size:.8rem;overflow-wrap:anywhere}
+.copy{cursor:pointer}
+
+/* ---------- FOOTER ---------- */
+footer{border-top:1px solid var(--line);padding:36px 0;margin-top:40px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:var(--mono);font-size:.78rem;color:var(--dim)}
+.ia{max-width:64ch}
+
+/* ---------- PALETTE ---------- */
+.pal{position:fixed;inset:0;z-index:100;background:rgba(3,4,8,.7);backdrop-filter:blur(4px);display:none;align-items:flex-start;justify-content:center;padding-top:12vh}
+.pal.open{display:flex}
+.pbox{width:min(600px,92vw);background:var(--surface);border:1px solid var(--line2);border-radius:14px;overflow:hidden;box-shadow:0 40px 100px -20px #000}
+.pbox input{width:100%;background:var(--bg2);border:0;border-bottom:1px solid var(--line);color:var(--text);font-family:var(--mono);font-size:.95rem;padding:16px 18px;outline:0}
+.plist{max-height:360px;overflow:auto;padding:6px}
+.pitem{display:flex;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:8px;cursor:pointer;color:var(--muted);font-size:.93rem}
+.pitem small{font-family:var(--mono);color:var(--dim);font-size:.72rem}
+.pitem.sel{background:rgba(70,227,201,.1);color:var(--text)}
+.pfoot{padding:8px 14px;border-top:1px solid var(--line);font-family:var(--mono);font-size:.7rem;color:var(--dim)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120px);opacity:0;visibility:hidden;background:var(--cyan);color:#05120f;font-family:var(--mono);font-size:.85rem;font-weight:700;padding:10px 18px;border-radius:999px;transition:.3s;z-index:120}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1;visibility:visible}
+
+/* ---------- TERMINAL LINUX y EDITOR ---------- */
+.lx,.ed{--g:#8ae234;--b:#729fcf;--y:#fce94f;--r:#ff6b6b;--m:#d49bff;--c:#34e2e2;--o:#ffb86c;--s:#a6e3a1;background:#0b0e14;border:1px solid #232a3b;border-radius:12px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(0,0,0,.85),0 0 0 1px rgba(143,123,255,.07)}
+.lxbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:8px 12px;background:#181d29;border-bottom:1px solid #232a3b}
+.lxbar .ic{font-family:var(--mono);color:var(--dim);font-size:.85rem}
+.lxbar .ttl{font-size:.8rem;font-weight:600;color:#c9d1e3}
+.lxbar .wb{display:flex;gap:8px;justify-content:flex-end}
+.lxbar .wb i{width:16px;height:16px;border-radius:50%;background:#2a3142;display:grid;place-items:center;font-style:normal;font-size:10px;color:#a9b1c6;line-height:1}
+.lxbar .wb i.x{background:#e95420;color:#fff}
+.lxbody{font-family:var(--mono);font-size:.8rem;line-height:1.6;padding:16px 18px 20px;min-height:470px;white-space:pre-wrap;color:#d3d7cf}
+.g{color:var(--g)}.b{color:var(--b)}.y{color:var(--y)}.r{color:var(--r)}.m{color:var(--m)}.c{color:var(--c)}.o{color:var(--o)}.s{color:var(--s)}.w{color:#eef1f7}.bd{font-weight:700}.p{color:#6b7591}
+.out{animation:fade .25s ease}
+.nf{display:grid;grid-template-columns:auto 1fr;gap:22px;margin:6px 0 4px;white-space:normal}
+.nf .art{white-space:pre;line-height:1.08;letter-spacing:-.5px;font-weight:700;padding-top:4px}
+.nf .info{white-space:pre-wrap}
+.sw{display:inline-block;width:22px;height:12px;margin-right:3px;border-radius:2px}
+@media(max-width:560px){.nf{grid-template-columns:1fr}.nf .art{display:none}.lxbody{min-height:0}}
+.edtabs{display:flex;background:#10141d;border-bottom:1px solid #232a3b;overflow-x:auto;scrollbar-width:none}
+.edtab{font-family:var(--mono);font-size:.8rem;color:var(--muted);padding:11px 18px;border:0;border-right:1px solid #1c2232;border-top:2px solid transparent;background:none;cursor:pointer;display:flex;gap:8px;align-items:center;white-space:nowrap}
+.edtab:hover{color:var(--text)}
+.edtab.on{background:#0b0e14;color:var(--text);border-top-color:var(--cyan)}
+.edtab .dot{width:8px;height:8px;border-radius:50%}
+.edpane{display:none}.edpane.on{display:block}
+.code{counter-reset:l;font-family:var(--mono);font-size:.88rem;line-height:1.75;padding:16px 0 18px;color:#c9d1e3}
+.ln{display:grid;grid-template-columns:3.4em 1fr;white-space:pre-wrap;overflow-wrap:anywhere;padding-right:22px}
+.ln::before{counter-increment:l;content:counter(l);color:#39425c;text-align:right;padding-right:18px;user-select:none}
+.ln:hover{background:rgba(143,123,255,.05)}
+.code .h{color:var(--c);font-weight:700}.code .k{color:#ff8fb3}.code .q{color:var(--m)}.code .cm{color:#5d6886;font-style:italic}
+.code a{color:var(--y);text-decoration:underline;text-decoration-color:rgba(252,233,79,.35)}
+.go{animation:ty var(--d) steps(20,end) both}
+.fin{animation:none!important}
+@keyframes ty{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.edstatus{display:flex;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:.72rem;padding:6px 14px;background:linear-gradient(90deg,#7a5cff,#3bc9b4);color:#0b0e14;font-weight:700}
+.edhint{font-family:var(--mono);font-size:.72rem;color:var(--dim);margin-top:8px}
+.blocks{padding:30px 26px 34px;display:flex;flex-direction:column;align-items:flex-start;background-image:radial-gradient(#1d2437 1px,transparent 1px);background-size:18px 18px}
+.blk{position:relative;display:flex;flex-wrap:wrap;gap:10px;align-items:center;max-width:100%;color:#fff;font-weight:700;font-size:.95rem;padding:12px 16px;border-radius:7px;border:1px solid rgba(0,0,0,.25);box-shadow:inset 0 -3px 0 rgba(0,0,0,.18);margin-top:-1px}
+.blk::after{content:"";position:absolute;left:20px;bottom:-9px;width:28px;height:9px;background:inherit;border-radius:0 0 7px 7px;z-index:2}
+.blk.hat{border-radius:26px 26px 7px 7px;padding-top:20px}
+.blk.end::after{display:none}
+.blk.ev{background:#e6a800}.blk.lk{background:#8a5cf5}.blk.op{background:#3fae4a}.blk.ct{background:#f08c1a}.blk.mo{background:#3d86f0;color:#fff;cursor:pointer}
+.blk.mo:hover{text-decoration:none;filter:brightness(1.1)}
+.blk .in{background:#fff;color:#262838;border-radius:14px;padding:5px 13px;font-weight:500;font-size:.9rem;flex:1 1 260px;line-height:1.45}
+.snap{animation:snap .45s cubic-bezier(.3,1.5,.6,1) both}
+@keyframes snap{from{opacity:0;transform:translate(-30px,-14px) rotate(-2deg)}to{opacity:1;transform:none}}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <nav class="wrap nav" aria-label="Principal">
+    <a href="#inicio" class="brand" aria-label="Inicio"><span class="logo">TV</span><span>thiago<span class="muted">.dev</span><span class="cursor">_</span></span></a>
+    <div class="links" id="links">
+      <a href="#inicio" data-nav="inicio"><span class="n">01</span>inicio</a>
+      <a href="#sobre-mi" data-nav="sobre-mi"><span class="n">02</span>sobre mí</a>
+      <a href="#proyectos" data-nav="proyectos"><span class="n">03</span>proyectos</a>
+    </div>
+    <button class="kbtn" id="openPal" aria-label="Buscar en el sitio">buscar <kbd>Ctrl K</kbd></button>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- ================= 01 INICIO ================= -->
+<section class="view" data-view="inicio">
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <div class="eyebrow">e-portfolio · Educación Informática II · UNLPam</div>
+        <h1>Thiago<br><span class="grad">Llovio Villarías</span></h1>
+        <p class="lead">Estudiante de 3.º año del <strong style="color:var(--text)">Profesorado Universitario en Computación</strong>. Diseño recursos educativos con tecnología: videojuegos, simuladores, museos virtuales y contenido multimedia que se usan directo en el navegador.</p>
+        <div class="row">
+          <a class="btn primary" href="#proyectos">ver proyectos →</a>
+          <a class="btn" href="#sobre-mi">sobre mí</a>
+          <a class="btn" href="https://github.com/villariasthiago" target="_blank" rel="noopener">github ↗</a>
+        </div>
+        <div class="mailrow">
+          <span class="p">✉</span> <a href="mailto:villariasthiago@gmail.com">villariasthiago@gmail.com</a>
+          <button class="copybtn" id="copyMail" type="button">copiar</button>
+        </div>
+      </div>
+      <div class="lx" aria-label="Terminal de presentación">
+        <div class="lxbar"><span class="ic">▣</span><span class="ttl">thiago@unlpam: ~/portfolio</span><span class="wb"><i>–</i><i>□</i><i class="x">×</i></span></div>
+        <div class="lxbody" id="typed"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow">destacados</div>
+        <h2>Proyectos para probar ahora</h2>
+        <p class="lead">Cada proyecto se abre dentro de este sitio, sin descargas ni instalaciones.</p>
+      </div>
+      <div class="grid" id="featured"></div>
+      <div class="row" style="margin-top:28px"><a class="btn" href="#proyectos">ver los 8 proyectos →</a></div>
+    </div>
+  </section>
+
+</section>
+
+<!-- ================= 02 SOBRE MÍ ================= -->
+<section class="view" data-view="sobre-mi">
+  <section class="block">
+    <div class="wrap about">
+      <aside class="portrait">
+        <div class="frame">
+          <img src="img/thiago-retrato.webp" alt="Retrato de Thiago Llovio Villarías" width="800" height="1000">
+          <div class="cap"><b>Thiago Llovio Villarías</b><span class="muted">profesorado en computación</span></div>
+        </div>
+        <div class="meta">
+          <span>Santa Rosa, La Pampa</span>
+          <span>UNLPam · FCEyN · ingreso 2024</span>
+          <span>Linux de uso diario</span>
+        </div>
+      </aside>
+      <div>
+        <div class="eyebrow">sobre mí</div>
+        <h2 style="margin:12px 0 24px">¡Hola! Soy <span class="grad">Thiago</span>.</h2>
+        <div id="aboutEd"></div>
+        <div class="edhint">tip: cambiá de pestaña · clic en el texto para saltar la animación</div>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- ================= 03 PROYECTOS ================= -->
+<section class="view" data-view="proyectos">
+  <section class="block">
+    <div class="wrap">
+      <div class="head">
+        <div class="eyebrow">proyectos</div>
+        <h2>Todo lo que construí, <span class="grad">en un solo lugar</span></h2>
+        <p class="lead">Filtrá por tipo o buscá por palabra. Hacé clic en una tarjeta para abrir el proyecto dentro del sitio.</p>
+      </div>
+      <div class="toolbar">
+        <div class="chips" id="chips" role="group" aria-label="Filtrar por tipo"></div>
+        <label class="search"><span class="mono muted">⌕</span><input id="q" type="search" placeholder="buscar: 3d, online, agua…" aria-label="Buscar proyectos"></label>
+      </div>
+      <div class="grid" id="allgrid"></div>
+      <div class="empty" id="empty">ningún proyecto coincide con la búsqueda</div>
+    </div>
+  </section>
+</section>
+
+<!-- ================= DETALLE PROYECTO ================= -->
+<section class="view" data-view="proyecto">
+  <div class="wrap" id="detail"></div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Thiago Llovio Villarías · Profesorado Universitario en Computación · UNLPam</span>
+    <span class="ia">Los proyectos de software se desarrollaron con asistencia de herramientas de inteligencia artificial.</span>
+  </div>
+</footer>
+
+<div class="pal" id="pal" role="dialog" aria-modal="true" aria-label="Buscar en el sitio">
+  <div class="pbox">
+    <input id="pq" placeholder="ir a… (página o proyecto)" autocomplete="off">
+    <div class="plist" id="plist"></div>
+    <div class="pfoot">↑↓ navegar · enter abrir · esc cerrar</div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================
+   DATOS — para agregar un proyecto, sumá un objeto a esta lista
+   ========================================================= */
+const GH='https://villariasthiago.github.io/', REPO='https://github.com/villariasthiago/';
+// El visor integrado funciona en GitHub Pages o en local. En otros lugares (por ejemplo, la vista
+// de artifacts de Claude) los iframes externos están bloqueados: se muestra la captura y un botón.
+const CAN_EMBED=/(^|\.)github\.io$|^localhost$|^127\./.test(location.hostname)||location.protocol==='file:';
+const TIPOS={juego:'videojuegos',sim:'simuladores','3d':'3D / VR',media:'multimedia',datos:'datos'};
+const PROJECTS=[
+{
+  id:'museo-virtual', title:'Museo Virtual de Paleontología', tipo:'3d', featured:true, ie2:true,
+  ctx:'Educación Informática II · FCEyN',
+  img:'img/museo-virtual.webp', url:GH+'Museo-Virtual/', repo:REPO+'Museo-Virtual', online:true,
+  extra:[['demo en Vercel','https://paleo-virtual-fceyn.vercel.app']],
+  short:'Repositorio virtual de fósiles en 3D, con buscador, filtros y recorrido inmersivo.',
+  desc:['Prototipo del museo virtual de paleontología de la Facultad de Ciencias Exactas y Naturales. Reúne modelos 3D de fósiles que se pueden buscar, filtrar y girar en el navegador, dentro de una sala recorrible.',
+        'El trabajo incluyó investigar opciones gratuitas de publicación y de visualización 3D (como `<model-viewer>`, Sketchfab y Three.js) y planificar un video corto para anteojos de realidad virtual que invite a recorrer el museo.'],
+  tech:['HTML, CSS y JavaScript','Visor 3D interactivo','Modelos .glb / .gltf optimizados para web','GitHub Pages y Vercel'],
+  tags:['3D','realidad virtual','web'],
+  ficha:{dest:'Área de Geología de la FCEyN y público general.',cont:'Fósiles y eras geológicas, visualización de objetos 3D, publicación web de colecciones.',aula:'Recorrido guiado proyectado o en grupos; búsqueda de piezas por filtros y comparación entre eras.'}
+},
+{
+  id:'control-por-gestos', title:'Control por gestos', tipo:'juego', featured:true, ie2:true,
+  ctx:'Jornada de Puertas Abiertas · 23 de septiembre',
+  img:'img/control-por-gestos.webp', url:GH+'control-por-gestos/', repo:REPO+'control-por-gestos', online:true, camera:true,
+  extra:[['descargar ROMs','https://drive.google.com/drive/folders/17qN7pQiP_1hZRgjJR3os8QRixz6uJR_i']],
+  short:'Juegos de consolas clásicas que se manejan con la mano frente a la cámara.',
+  desc:['Recurso creado para difundir las carreras del Departamento de Matemática y Computación en la Jornada de Puertas Abiertas de la facultad. La cámara detecta la mano y la convierte en controles para jugar sin tocar nada.',
+        'En **OutRun** la mano funciona como volante: el ángulo gira, el puño acelera y la palma cambia de marcha. En **Star Force** la mano mueve la nave, con disparo automático. Un gesto de OK sostenido equivale a START. La primera versión, en Python, se portó a JavaScript para que se juegue online.'],
+  notice:'Necesita permiso de cámara. Cada persona carga su propia ROM del juego: el sitio no incluye ROMs. Podés <a href="https://drive.google.com/drive/folders/17qN7pQiP_1hZRgjJR3os8QRixz6uJR_i" target="_blank" rel="noopener">descargarlas desde esta carpeta de Drive ↗</a>.',
+  tech:['MediaPipe (detección de manos) en un Web Worker','EmulatorJS','JavaScript','GitHub Actions + Pages'],
+  tags:['visión por computadora','cámara','retro'],
+  ficha:{dest:'Estudiantes de secundaria que visitan la facultad; aspirantes a carreras de Matemática y Computación.',cont:'Visión por computadora, interacción persona-computadora, emulación.',aula:'Demostración que abre la pregunta “¿cómo reconoce la cámara una mano?”; después, explicar los puntos de referencia que detecta MediaPipe.'}
+},
+{
+  id:'brain-challenge', title:'Brain Challenge 3D', tipo:'juego', ie2:true,
+  ctx:'Educación Informática II',
+  img:'img/juegos-didacticos.webp', url:GH+'juegos-didacticos/', repo:REPO+'juegos-didacticos', online:true,
+  short:'Tres juegos en 3D que entrenan memoria, razonamiento espacial y planificación.',
+  desc:['Videojuego educativo en tres dimensiones con una **grilla de memoria 3D**, un **cubo Rubik** funcional y un **Ta-Te-Ti de 3 fichas** con oponente de IA. Está pensado para niños y también para adultos mayores.',
+        'Tiene dificultad progresiva y ayudas para quien se traba: en el Rubik hay una guía capa por capa, pistas y resolución automática. Se construyó en cinco etapas, en las que cada prototipo orientó la mejora siguiente.'],
+  notice:'Se propone como complemento didáctico y recreativo, no como terapia: lo que se entrena con seguridad es la tarea del propio juego.',
+  tech:['p5.js (WEBGL)','JavaScript ES6','HTML5 y CSS3','Pruebas automáticas con Node.js'],
+  tags:['3D','memoria','rubik'],
+  ficha:{dest:'Niños y adultos mayores.',cont:'Memoria de trabajo (Baddeley), rotación mental (Shepard y Metzler), planificación y andamiaje (Vygotsky).',aula:'Trabajo individual por niveles. Las ayudas funcionan como andamiaje: conviene retirarlas a medida que el estudiante avanza.'}
+},
+{
+  id:'malvinas', title:'Malvinas: historia de un reclamo', tipo:'media', ie2:true, video:true,
+  ctx:'Educación Informática II · contenido multimedia',
+  img:'img/malvinas.webp', url:'https://www.youtube-nocookie.com/embed/wPDaOtztcig', watch:'https://youtu.be/wPDaOtztcig', online:true,
+  short:'Video de unos 4 minutos sobre el reclamo de soberanía argentino por las islas.',
+  desc:['Animación y video que relata la historia del reclamo de soberanía argentino sobre las islas Malvinas y rescata el concepto de soberanía.',
+        'El proceso incluyó recolectar información de fuentes históricas y periodísticas confiables, buscar imágenes, videos y audios, armar un guion con línea de tiempo y editar con herramientas multimedia, incluida la IA generativa.'],
+  tech:['Edición de imagen y video','IA generativa','Guion y línea de tiempo'],
+  tags:['video','IA generativa','historia'],
+  ficha:{dest:'Secundaria y formación docente.',cont:'Soberanía e historia argentina; producción multimedia y uso crítico de IA generativa.',aula:'Disparador para un debate, o ejemplo de cómo planificar un video: fuentes, guion, línea de tiempo y edición.'}
+},
+{
+  id:'siderea', title:'SiDeReA · Reutilización de agua', tipo:'sim', ie2:true,
+  ctx:'Educación Informática II · EPET N°1',
+  img:'img/reciclado-agua.webp', url:GH+'SiDeReA/', repo:REPO+'SiDeReA', online:true,
+  short:'Simulador del consumo de agua de una casa y de cuánto se ahorra al reutilizarla.',
+  desc:['Sistema Domiciliario de Reutilización de Agua: un simulador web que muestra el corte de una casa con patio, cocina, baño y lavadero. Cada artefacto es clickeable y suma litros a un contador.',
+        'Compara el modo **tradicional**, donde toda el agua va al pozo cloacal, con el modo **reciclado**, donde el agua gris de la ducha, las manos y el lavarropas se guarda en un tanque y alimenta el inodoro y el riego. Puede simular un día, una semana o un mes, con métricas en tiempo real.'],
+  tech:['Un único archivo HTML / JavaScript','Animación de cañerías por tipo de agua','Simulación de 32 pasos diarios'],
+  tags:['agua','sustentabilidad','simulación'],
+  ficha:{dest:'Secundaria técnica (desarrollado para la EPET N°1).',cont:'Consumo domiciliario (unos 650 L diarios para 4 personas), agua gris, reutilización y ahorro.',aula:'Correr la misma rutina en los dos modos y comparar las métricas; registrar cuánta agua potable se ahorra en un mes.'}
+},
+{
+  id:'tateti-online', title:'Ta-Te-Ti 3D online', tipo:'juego', ie2:true,
+  ctx:'Educación Informática II',
+  img:'img/tateti-online.webp', url:GH+'tateti-online/', repo:REPO+'tateti-online', online:true,
+  short:'El Ta-Te-Ti de 3 fichas de Brain Challenge, para jugar entre dos dispositivos.',
+  desc:['Versión online del Ta-Te-Ti 3D de 3 fichas: primero se colocan las fichas y después se mueven a casillas vecinas, solo en horizontal o vertical.',
+        'Los dos navegadores se conectan de forma directa, sin servidor propio. Solo viajan mensajes chicos con cada jugada y los dos dispositivos aplican las mismas reglas, así que la partida queda igual en ambos.'],
+  notice:'Algunas redes wifi escolares bloquean este tipo de conexión. Si no conecta, conviene probar con datos móviles.',
+  tech:['PeerJS sobre WebRTC','JavaScript','Validación de jugadas en cada navegador'],
+  tags:['online','WebRTC','estrategia'],
+  ficha:{dest:'Secundaria y formación docente en Informática.',cont:'Estrategia y anticipación; también sirve como caso real para enseñar redes: conexión directa, señalización y detección de desconexión.',aula:'Jugar en parejas y después explicar cómo se encuentran los dos navegadores y qué datos viajan.'},
+  rel:'brain-challenge'
+},
+{
+  id:'carrera-de-la-vida', title:'La Carrera de la Vida', tipo:'juego', ie2:true,
+  ctx:'Educación Informática II · jugabilidad',
+  img:'img/carrera-de-la-vida.webp', url:GH+'carrera-de-la-vida/', repo:REPO+'carrera-de-la-vida', online:true,
+  short:'Juego de mesa para el navegador: estudiá, trabajá y jubilate con la mayor fortuna.',
+  desc:['Juego de tablero con ruleta para 2 a 6 personas, en la misma tablet o compu, contra la computadora u online, cada uno desde su casa. Gana quien se jubila con más plata.',
+        'El foco está puesto en la **jugabilidad**: un cartel con lamparita explica cada decisión en el momento, las casillas se pueden tocar para ver qué hacen y la partida se guarda sola. En el camino se elige carrera o trabajo, se compran seguros, casa y acciones, y se piden préstamos.'],
+  tech:['JavaScript','PeerJS para el modo online','Diseño táctil para tablet'],
+  tags:['juego de mesa','online','multijugador'],
+  ficha:{dest:'Grupos de 2 a 6 personas.',cont:'Diseño de jugabilidad y toma de decisiones; nociones de economía personal: sueldo, préstamos, seguros e inversiones.',aula:'Partida en grupos con una tablet compartida, y luego puesta en común sobre las decisiones que más pesaron.'}
+},
+{
+  id:'atlas-electoral', title:'Atlas Electoral de La Pampa', tipo:'datos', ie2:false,
+  ctx:'Proyecto personal · análisis de datos',
+  img:'img/atlas-electoral.webp', url:GH+'Atlas-electoral-lapampa/', repo:REPO+'Atlas-electoral-lapampa', online:true,
+  short:'Resultados electorales provinciales 2007–2023 por localidad, con escenario 2027.',
+  desc:['Sitio interactivo con los resultados de las elecciones provinciales y municipales de La Pampa entre 2007 y 2023, a partir de las actas del Tribunal Electoral, consultables para toda la provincia o por localidad.',
+        'Incluye un buscador de candidatos, rankings de trayectorias y una calculadora del escenario 2027 donde se arman alianzas y se ve cómo se reparten las 30 bancas con el sistema D’Hondt.'],
+  tech:['HTML, CSS y JavaScript','Procesamiento de actas oficiales','Visualización de datos'],
+  tags:['elecciones','La Pampa','D’Hondt'],
+  ficha:{dest:'Proyecto personal; útil en secundaria para formación ciudadana.',cont:'Lectura e interpretación de datos, sistemas electorales y el método D’Hondt.',aula:'Explorar una localidad a lo largo de los años y probar en la calculadora cómo cambia el reparto de bancas.'}
+}
+];
+
+
+/* =========================================================
+   UTILIDADES
+   ========================================================= */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const byId=id=>PROJECTS.find(p=>p.id===id);
+function card(p){
+  const live=p.online?'<span class="badge live">online</span>':'<span class="badge off">próximamente</span>';
+  return `<a class="card" href="#proyecto-${p.id}" data-tipo="${p.tipo}">
+    <div class="thumb"><img src="${p.img}" alt="Captura de ${p.title}" loading="lazy" width="1280" height="720">${live}
+      <div class="play"><span>${p.video?'▶ ver video':p.online?'▶ abrir aquí':'ver ficha'}</span></div></div>
+    <div class="cbody"><div class="ctx">${p.ctx}</div><h3>${p.title}</h3><p>${p.short}</p>
+      <div class="tags"><span class="tag t-${p.tipo}">${TIPOS[p.tipo]}</span>${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div></a>`;
+}
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),1800)}
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+$('#featured').innerHTML=['atlas-electoral','control-por-gestos','museo-virtual'].map(id=>card(byId(id))).join('');
+$('#allgrid').innerHTML=PROJECTS.map(card).join('');
+
+
+// Filtros
+let filt='todos';
+$('#chips').innerHTML=[['todos','todos',PROJECTS.length],...Object.entries(TIPOS).map(([k,v])=>[k,v,PROJECTS.filter(p=>p.tipo===k).length])]
+  .map(([k,v,n])=>`<button class="chip${k==='todos'?' on':''}" data-f="${k}">${v}<span class="k">${n}</span></button>`).join('');
+function applyFilter(){
+  const q=$('#q').value.trim().toLowerCase(); let shown=0;
+  $$('#allgrid .card').forEach((el,i)=>{
+    const p=PROJECTS[i]; const hay=[p.title,p.short,p.ctx,...p.tags,TIPOS[p.tipo]].join(' ').toLowerCase();
+    const ok=(filt==='todos'||p.tipo===filt)&&(!q||hay.includes(q)); el.style.display=ok?'':'none'; shown+=ok;
+  });
+  $('#empty').style.display=shown?'none':'block';
+}
+$('#chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;filt=b.dataset.f;$$('#chips .chip').forEach(c=>c.classList.toggle('on',c===b));applyFilter()});
+$('#q').addEventListener('input',applyFilter);
+
+// Detalle
+function renderDetail(id){
+  const p=byId(id); if(!p){location.hash='#proyectos';return}
+  const i=PROJECTS.indexOf(p), prev=PROJECTS[(i-1+PROJECTS.length)%PROJECTS.length], next=PROJECTS[(i+1)%PROJECTS.length];
+  const shown=(p.watch||p.url).replace('https://','');
+  const allow='camera; microphone; fullscreen; autoplay; gamepad; accelerometer; gyroscope; xr-spatial-tracking; clipboard-write; encrypted-media; picture-in-picture';
+  const stage=(p.online&&!CAN_EMBED)
+    ? `<div class="offline"><img src="${p.img}" alt=""><div><b style="color:var(--cyan)">// vista previa</b><p class="muted">La vista integrada funciona en el sitio publicado en GitHub Pages.<br>Desde acá, abrilo en una pestaña nueva.</p><a class="btn primary" href="${p.watch||p.url}" target="_blank" rel="noopener">${p.video?'ver video':'abrir proyecto'} ↗</a></div></div>`
+    : p.online
+    ? `<div class="loader">cargando ${p.title}…</div><iframe src="${p.url}" title="${p.title}" allow="${allow}" allowfullscreen loading="eager"></iframe>`
+    : `<div class="offline"><img src="${p.img}" alt=""><div><b>// en preparación</b><p class="muted">Este proyecto todavía no está publicado online.<br>Mientras tanto, podés ver el código en GitHub.</p>${p.repo?`<a class="btn primary" href="${p.repo}" target="_blank" rel="noopener">ver repositorio ↗</a>`:''}</div></div>`;
+  const rel=p.rel?byId(p.rel):null;
+  $('#detail').innerHTML=`
+    <div class="crumbs"><a href="#inicio">inicio</a> / <a href="#proyectos">proyectos</a> / <span style="color:var(--text)">${p.id}</span></div>
+    <div class="dhead">
+      <div><div class="eyebrow">${p.ctx}</div><h1>${p.title}</h1><p class="lead">${p.short}</p></div>
+      <div class="row">
+        ${p.online?`<a class="btn primary" href="${p.watch||p.url}" target="_blank" rel="noopener">pantalla completa ↗</a>`:''}
+        ${p.repo?`<a class="btn" href="${p.repo}" target="_blank" rel="noopener">código ↗</a>`:''}
+        ${(p.extra||[]).map(([t,u])=>`<a class="btn" href="${u}" target="_blank" rel="noopener">${t} ↗</a>`).join('')}
+      </div>
+    </div>
+    <div class="viewer${p.video?' video':''}">
+      <div class="bar"><div class="dots"><i></i><i></i><i></i></div><div class="url"><b>🔒</b> ${shown}</div></div>
+      <div class="stage">${stage}</div>
+    </div>
+    ${p.notice?`<div class="notice">${p.notice}</div>`:''}
+    <div style="margin-top:32px" id="projEd"></div>
+    <div class="edhint">tip: README · stack — clic en el texto para saltar la animación</div>
+    <nav class="pager" aria-label="Otros proyectos">
+      <a href="#proyecto-${prev.id}"><small>← anterior</small>${prev.title}</a>
+      <a href="#proyecto-${next.id}"><small>siguiente →</small>${next.title}</a>
+    </nav>`;
+  mountEditor($('#projEd'),projectTabs(p,rel));
+  const fr=$('#detail iframe'); if(fr) fr.addEventListener('load',()=>{const l=$('#detail .loader');l&&l.remove()});
+}
+
+/* =========================================================
+   ROUTER (cada página tiene su propia URL: #sobre-mi, #proyectos, #proyecto-museo-virtual…)
+   ========================================================= */
+const TITLES={inicio:'Inicio','sobre-mi':'Sobre mí',proyectos:'Proyectos'};
+function route(){
+  const h=decodeURIComponent(location.hash.replace(/^#\/?/,''))||'inicio';
+  const [v,arg]=/^proyecto[-\/]/.test(h)?['proyecto',h.replace(/^proyecto[-\/]/,'')]:[h,''];
+  const view=(TITLES[v]||v==='proyecto')?v:'inicio';
+  if(view!=='proyecto') $('#detail').innerHTML=''; // detiene juegos, cámara y video al salir
+  $$('.view').forEach(s=>s.classList.toggle('on',s.dataset.view===view));
+  if(view==='proyecto') renderDetail(arg);
+  if(view==='sobre-mi'&&!aboutMounted){aboutMounted=true;mountEditor($('#aboutEd'),ABOUT_TABS)}
+  $$('[data-nav]').forEach(a=>a.classList.toggle('active',a.dataset.nav===(view==='proyecto'?'proyectos':view)));
+  document.title=(view==='proyecto'?(byId(arg)||{}).title:TITLES[view])+' · Thiago Llovio Villarías';
+  window.scrollTo({top:0,behavior:'instant'});
+  observe();
+}
+window.addEventListener('hashchange',route);
+
+/* =========================================================
+   EFECTOS
+   ========================================================= */
+const io='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15}):null;
+function observe(){$$('.view.on .reveal:not(.in)').forEach(el=>io?io.observe(el):el.classList.add('in'))}
+
+/* =========================================================
+   TERMINAL LINUX (inicio)
+   ========================================================= */
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const PROMPT='<span class="g bd">thiago@unlpam</span><span class="w">:</span><span class="b bd">~/portfolio</span><span class="w">$ </span>';
+const ART=['███████  ██    ██','  ███    ██    ██','  ███    ██    ██','  ███     ██  ██ ','  ███      ████  ','  ███       ██   '];
+const ARTC=['c','b','m','r','o','y'];
+const NF_INFO=[
+  '<span class="g bd">thiago</span><span class="w">@</span><span class="g bd">unlpam</span>',
+  '<span class="p">────────────────────</span>',
+  ['OS','Profesorado en Computación'],
+  ['Host','UNLPam · FCEyN']
+  ,['Año','3.º'],
+  ['Kernel','Educación Informática II'],
+  ['Uptime','desde 2024'],
+  ['Shell','bash · Linux de uso diario'],
+  ['Enfoque','aprendizaje significativo'],
+  '',
+  ['#2e3440','#ff6b6b','#8ae234','#fce94f','#729fcf','#d49bff','#34e2e2','#eef1f7'].map(c=>`<span class="sw" style="background:${c}"></span>`).join('')
+].map(l=>Array.isArray(l)?`<span class="c bd">${l[0]}</span><span class="w">: ${l[1]}</span>`:l).join('\n');
+const NEOFETCH=`<div class="nf"><div class="art">${ART.map((l,i)=>`<span class="${ARTC[i]}">${l}</span>`).join('\n')}</div><div class="info">${NF_INFO}</div></div>`;
+const LSCOL={juego:'g',sim:'y','3d':'m',media:'r',datos:'c'};
+const LS=PROJECTS.map(p=>`<span class="${LSCOL[p.tipo]} bd">${p.id.replace(/-/g,'‑')}/</span>`).join('  ')+'\n';
+const TSTEPS=[
+  {cmd:'neofetch',out:NEOFETCH},
+  {cmd:'ls proyectos/',out:LS},
+  {cmd:'cat enfoque.txt',out:'<span class="y">transformar el conocimiento tecnológico</span>\n<span class="y">en una herramienta de aprendizaje significativo.</span>\n'}
+];
+(function(){
+  const el=$('#typed');
+  if(RM){el.innerHTML=TSTEPS.map(s=>PROMPT+'<span class="w">'+s.cmd+'</span>\n'+s.out).join('\n')+'\n'+PROMPT+'<span class="caret"></span>';return}
+  let i=0;
+  function next(){
+    if(i>=TSTEPS.length){el.insertAdjacentHTML('beforeend',PROMPT+'<span class="caret"></span>');return}
+    const s=TSTEPS[i++];
+    el.insertAdjacentHTML('beforeend',PROMPT);
+    const c=document.createElement('span');c.className='w';el.appendChild(c);
+    const cur=document.createElement('span');cur.className='caret';el.appendChild(cur);
+    let k=0;
+    setTimeout(function t(){
+      if(k<s.cmd.length){c.textContent+=s.cmd[k++];setTimeout(t,50+Math.random()*60);return}
+      setTimeout(()=>{cur.remove();const o=document.createElement('span');o.className='out';o.innerHTML='\n'+s.out+(i<TSTEPS.length?'\n':'');el.appendChild(o);setTimeout(next,650)},280);
+    },i===1?500:200);
+  }
+  next();
+})();
+
+/* =========================================================
+   EDITOR CON PESTAÑAS (sobre mí y proyectos)
+   ========================================================= */
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function wrap(text,w,prefix=''){const out=[];let line='';for(const word of text.split(' ')){if(line&&(line+' '+word).length>w-prefix.length){out.push(prefix+line);line=word}else line=line?line+' '+word:word}if(line)out.push(prefix+line);return out}
+// Mini-resaltador de Markdown: # títulos, **negrita**, `código`, [enlaces](url), > citas, - listas, <!-- comentarios -->
+function md(blocks,w=74){
+  const lines=[];
+  blocks.forEach(b=>{if(b===''||/^#{1,3} |^- |^<!--/.test(b))lines.push(b);else if(b.startsWith('> '))lines.push(...wrap(b.slice(2),w,'> '));else lines.push(...wrap(b,w))});
+  let bold=false;
+  return lines.map(l=>{
+    if(/^#{1,3} /.test(l))return `<span class="h">${esc(l)}</span>`;
+    if(l.startsWith('<!--'))return `<span class="cm">${esc(l)}</span>`;
+    let h=esc(l);
+    h=h.replace(/`([^`]+)`/g,'<span class="o">`$1`</span>');
+    h=h.replace(/\[([^\]]+)\]\(([^)]+)\)/g,(m,t,u)=>`<span class="p">[</span><a href="${u}"${u.startsWith('#')?'':' target="_blank" rel="noopener"'}>${t}</a><span class="p">]</span>`);
+    h=h.replace(/^- /,'<span class="r">-</span> ').replace(/^&gt; /,'<span class="p">&gt;</span> ');
+    let o=bold?'<span class="k">':'';
+    h.split('**').forEach((part,i)=>{if(i>0){o+=bold?'<span class="p">**</span></span>':'<span class="k"><span class="p">**</span>';bold=!bold}o+=part});
+    if(bold)o+='</span>';
+    return l.startsWith('> ')?`<span class="q">${o}</span>`:o;
+  });
+}
+const jv=x=>typeof x==='number'?`<span class="o">${x}</span>`:typeof x==='boolean'?`<span class="m">${x}</span>`:/^(https?:|#)/.test(x)?`<span class="s">"<a href="${x}"${x.startsWith('#')?'':' target="_blank" rel="noopener"'}>${esc(x.replace('https://',''))}</a>"</span>`:`<span class="s">"${esc(x)}"</span>`;
+function json(obj){
+  const L=['<span class="p">{</span>'],ks=Object.keys(obj);
+  ks.forEach((k,i)=>{const v=obj[k],c=i<ks.length-1?'<span class="p">,</span>':'',key=`  <span class="b">"${esc(k)}"</span><span class="p">:</span> `;
+    if(Array.isArray(v)){L.push(key+'<span class="p">[</span>');v.forEach((x,j)=>L.push('    '+jv(x)+(j<v.length-1?'<span class="p">,</span>':'')));L.push('  <span class="p">]</span>'+c)}
+    else L.push(key+jv(v)+c)});
+  L.push('<span class="p">}</span>');return L;
+}
+function editor(tabs){
+  return `<div class="ed"><div class="edtabs" role="tablist">${tabs.map((t,i)=>`<button class="edtab${i?'':' on'}" role="tab" aria-selected="${!i}" data-i="${i}"><span class="dot" style="background:${t.dot}"></span>${t.name}</button>`).join('')}</div>
+  ${tabs.map((t,i)=>`<div class="edpane${i?'':' on'}" data-i="${i}" role="tabpanel">${t.lines?`<div class="code">${t.lines.map(l=>`<div class="ln"><span>${l||' '}</span></div>`).join('')}</div>`:t.html}</div>`).join('')}
+  <div class="edstatus"><span>⎇ main</span><span class="edlang"></span></div></div>`;
+}
+function animatePane(pane){
+  if(RM)return;let t=0;
+  pane.querySelectorAll('.ln').forEach(l=>{const n=l.textContent.length,d=Math.min(Math.max(n*3,25),170);l.style.setProperty('--d',d+'ms');l.style.animationDelay=t+'ms';l.classList.add('go');t+=n?d+6:12});
+  pane.querySelectorAll('.blk').forEach((b,i)=>{b.style.animationDelay=(i*160)+'ms';b.classList.add('snap')});
+}
+function mountEditor(root,tabs){
+  if(!root)return;
+  // columnas disponibles según el ancho real del editor, para cortar el Markdown como un archivo real
+  const probe=document.createElement('span');probe.style.cssText='font:400 .88rem var(--mono);visibility:hidden;position:absolute';probe.textContent='0'.repeat(50);root.appendChild(probe);
+  const cw=probe.getBoundingClientRect().width/50||8.4;probe.remove();
+  const cols=Math.max(28,Math.min(96,Math.floor((root.clientWidth-90)/cw)));
+  tabs=tabs.map(t=>t.src?{...t,lines:md(t.src,cols)}:t);
+  root.innerHTML=editor(tabs);const seen=new Set();
+  const show=i=>{
+    root.querySelectorAll('.edtab').forEach(b=>{const on=+b.dataset.i===i;b.classList.toggle('on',on);b.setAttribute('aria-selected',on)});
+    root.querySelectorAll('.edpane').forEach(p=>p.classList.toggle('on',+p.dataset.i===i));
+    const t=tabs[i];root.querySelector('.edlang').textContent=[t.lang,'UTF-8',t.lines?t.lines.length+' líneas':(t.lang==='Bloques'?'bloques':'')].filter(Boolean).join(' · ');
+    if(!seen.has(i)){seen.add(i);animatePane(root.querySelector(`.edpane[data-i="${i}"]`))}
+  };
+  root.querySelector('.edtabs').addEventListener('click',e=>{const b=e.target.closest('.edtab');b&&show(+b.dataset.i)});
+  root.addEventListener('click',e=>{if(e.target.closest('.edpane')&&!e.target.closest('a'))root.querySelectorAll('.go,.snap').forEach(x=>x.classList.add('fin'))});
+  show(0);
+}
+
+/* ---------- Sobre mí ---------- */
+const ABOUT_TABS=[
+ {name:'sobre-mi.md',lang:'Markdown',dot:'#34e2e2',src:([
+  '# Thiago Llovio Villarías','',
+  'Soy estudiante de **3.º año del Profesorado Universitario en Computación** en la Universidad Nacional de La Pampa (UNLPam), carrera que inicié en 2024.','',
+  'Mi vínculo con la informática comenzó desde la práctica: **armado y reparación de equipos, soporte técnico** y cursos de desarrollo web básico con HTML y CSS. Si bien inicié cursando simultáneamente el PUC y la Tecnicatura en Informática de Gestión, elegí volcarme de lleno al profesorado porque valoro profundamente la **presencialidad**, el intercambio cotidiano y el contacto con las personas en el aula.','',
+  '> Vi en las materias pedagógicas una oportunidad para desafiar y enriquecer la mirada estructurada propia de la computación y la matemática, formándome no solo en lo técnico, sino en cómo transformar el conocimiento tecnológico en una herramienta de **aprendizaje significativo**.','',
+  'En este e-portfolio comparto los proyectos, recursos educativos y producciones desarrolladas a lo largo de la cátedra **Educación Informática II**. Podés recorrerlos en [proyectos](#proyectos).','',
+  '<!-- Santa Rosa, La Pampa · UNLPam · FCEyN -->'
+ ])},
+ {name:'trayectoria',lang:'Línea de tiempo',dot:'#ffb86c',html:`<div style="padding:28px 28px 20px"><div class="timeline">
+   <div class="tl"><div class="when">2020 – 2021</div><h4>Armado y mantenimiento de PC y notebooks</h4><p>Mantenimiento preventivo a domicilio, después de un curso de reparación y armado.</p></div>
+   <div class="tl"><div class="when">2021</div><h4>Curso de Desarrollo Web · Coderhouse</h4><p>Primeros pasos con HTML y CSS.</p></div>
+   <div class="tl"><div class="when">2021 – 2022</div><h4>Soporte técnico y atención a usuarios · remoto</h4><p>Atención de una comunidad de 500 a 600 usuarios por Telegram y Discord, con un equipo radicado en Eslovaquia.</p></div>
+   <div class="tl"><div class="when">2024</div><h4>Ingreso al Profesorado en Computación · UNLPam</h4><p>En paralelo con la Tecnicatura en Informática de Gestión, hasta elegir el profesorado.</p></div>
+   <div class="tl"><div class="when">2026</div><h4>Educación Informática II</h4><p>Videojuegos, simuladores, un museo virtual y producciones multimedia. <a href="#proyectos">Ver los proyectos →</a></p></div>
+  </div></div>`},
+ {name:'competencias.json',lang:'JSON',dot:'#fce94f',lines:json({
+  'soporte_técnico':['diagnóstico y resolución de incidencias','armado de PC de escritorio','instalación de Windows y Linux'],
+  'sistemas_operativos':['Linux (uso diario)','Windows'],
+  'programación_y_web':['Python','HTML','CSS','Pascal'],
+  'inteligencia_artificial':'uso avanzado para prototipado, automatización y documentación',
+  'atención_a_usuarios':'comunidades en línea, soporte remoto',
+  'inglés':'lectura técnica',
+  'github':'https://github.com/villariasthiago'
+ })}
+];
+let aboutMounted=false;
+
+/* ---------- Proyectos ---------- */
+function projectTabs(p,rel){
+  const go=p.watch||p.url;
+  const readme=['# '+p.title,'<!-- '+p.ctx+' -->','',...p.desc.flatMap(d=>[d,'']),'## Enlaces'];
+  if(p.online)readme.push(`- [${p.video?'ver el video':'abrir en pantalla completa'}](${go})`);
+  if(p.repo)readme.push(`- [código en GitHub](${p.repo})`);
+  (p.extra||[]).forEach(([t,u])=>readme.push(`- [${t}](${u})`));
+  if(rel)readme.push(`- [relacionado: ${rel.title}](#proyecto-${rel.id})`);
+  const stack={proyecto:p.id,contexto:p.ctx,tipo:TIPOS[p.tipo],estado:p.online?'online':'en preparación',herramientas:p.tech,etiquetas:p.tags};
+  if(p.online)stack.demo=go; if(p.repo)stack.repo=p.repo;
+  return [
+    {name:'README.md',lang:'Markdown',dot:'#34e2e2',src:readme},
+    {name:'stack.json',lang:'JSON',dot:'#fce94f',lines:json(stack)}
+  ];
+}
+
+// Copiar correo
+$('#copyMail').addEventListener('click',()=>{try{navigator.clipboard.writeText('villariasthiago@gmail.com').then(()=>toast('correo copiado ✓'),()=>toast('villariasthiago@gmail.com'))}catch(e){toast('villariasthiago@gmail.com')}});
+
+/* =========================================================
+   PALETA DE COMANDOS (Ctrl+K)
+   ========================================================= */
+const ITEMS=[...Object.entries(TITLES).map(([k,v])=>({t:v,h:'#'+k,k:'página'})),...PROJECTS.map(p=>({t:p.title,h:'#proyecto-'+p.id,k:TIPOS[p.tipo]})),{t:'GitHub',h:'https://github.com/villariasthiago',k:'enlace'}];
+let sel=0,cur=ITEMS;
+function drawPal(){const q=$('#pq').value.toLowerCase();cur=ITEMS.filter(i=>(i.t+' '+i.k).toLowerCase().includes(q));sel=Math.min(sel,Math.max(cur.length-1,0));
+  $('#plist').innerHTML=cur.map((i,n)=>`<div class="pitem${n===sel?' sel':''}" data-n="${n}"><span>${i.t}</span><small>${i.k}</small></div>`).join('')||'<div class="pitem">sin resultados</div>'}
+function openPal(){$('#pal').classList.add('open');$('#pq').value='';sel=0;drawPal();setTimeout(()=>$('#pq').focus(),10)}
+function closePal(){$('#pal').classList.remove('open')}
+function go(i){if(!i)return;closePal();if(i.h.startsWith('http')){const a=document.createElement('a');a.href=i.h;a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove()}else location.hash=i.h}
+$('#openPal').addEventListener('click',openPal);
+$('#pq').addEventListener('input',()=>{sel=0;drawPal()});
+$('#plist').addEventListener('click',e=>{const it=e.target.closest('[data-n]');it&&go(cur[+it.dataset.n])});
+$('#pal').addEventListener('click',e=>{if(e.target.id==='pal')closePal()});
+document.addEventListener('keydown',e=>{
+  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();$('#pal').classList.contains('open')?closePal():openPal();return}
+  if(!$('#pal').classList.contains('open'))return;
+  if(e.key==='Escape')closePal();
+  else if(e.key==='ArrowDown'){sel=Math.min(sel+1,cur.length-1);drawPal();e.preventDefault()}
+  else if(e.key==='ArrowUp'){sel=Math.max(sel-1,0);drawPal();e.preventDefault()}
+  else if(e.key==='Enter')go(cur[sel]);
+});
+
+route();
+</script>
+</body>
+</html>
