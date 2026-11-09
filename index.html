@@ -445,16 +445,15 @@ const CAN_EMBED=/(^|\.)github\.io$|^localhost$|^127\./.test(location.hostname)||
 const TIPOS={juego:'videojuegos',sim:'simuladores','3d':'3D / VR',media:'multimedia',datos:'datos'};
 const PROJECTS=[
 {
-  id:'museo-virtual', title:'Museo Virtual de Paleontología', tipo:'3d', featured:true, ie2:true,
-  ctx:'Informática Educativa II · FCEyN',
-  img:'img/museo-virtual.webp', url:GH+'Museo-Virtual/', repo:REPO+'Museo-Virtual', online:true,
-  extra:[['demo en Vercel','https://paleo-virtual-fceyn.vercel.app']],
-  short:'Repositorio virtual de fósiles en 3D, con buscador, filtros y recorrido inmersivo.',
-  desc:['Prototipo del museo virtual de paleontología de la Facultad de Ciencias Exactas y Naturales. Reúne modelos 3D de fósiles que se pueden buscar, filtrar y girar en el navegador, dentro de una sala recorrible.',
-        'El trabajo incluyó investigar opciones gratuitas de publicación y de visualización 3D (como `<model-viewer>`, Sketchfab y Three.js) y planificar un video corto para anteojos de realidad virtual que invite a recorrer el museo.'],
-  tech:['HTML, CSS y JavaScript','Visor 3D interactivo','Modelos .glb / .gltf optimizados para web','GitHub Pages y Vercel'],
-  tags:['3D','realidad virtual','web'],
-  ficha:{dest:'Área de Geología de la FCEyN y público general.',cont:'Fósiles y eras geológicas, visualización de objetos 3D, publicación web de colecciones.',aula:'Recorrido guiado proyectado o en grupos; búsqueda de piezas por filtros y comparación entre eras.'}
+  id:'atlas-electoral', title:'Atlas Electoral de La Pampa', tipo:'datos', ie2:false,
+  ctx:'Proyecto personal · análisis de datos',
+  img:'img/atlas-electoral.webp', url:GH+'Atlas-electoral-lapampa/', repo:REPO+'Atlas-electoral-lapampa', online:true,
+  short:'Resultados electorales provinciales 2007–2023 por localidad, con escenario 2027.',
+  desc:['Sitio interactivo con los resultados de las elecciones provinciales y municipales de La Pampa entre 2007 y 2023, a partir de las actas del Tribunal Electoral, consultables para toda la provincia o por localidad.',
+        'Incluye un buscador de candidatos, rankings de trayectorias y una calculadora del escenario 2027 donde se arman alianzas y se ve cómo se reparten las 30 bancas con el sistema D’Hondt.'],
+  tech:['HTML, CSS y JavaScript','Procesamiento de actas oficiales','Visualización de datos'],
+  tags:['elecciones','La Pampa','D’Hondt'],
+  ficha:{dest:'Proyecto personal; útil en secundaria para formación ciudadana.',cont:'Lectura e interpretación de datos, sistemas electorales y el método D’Hondt.',aula:'Explorar una localidad a lo largo de los años y probar en la calculadora cómo cambia el reparto de bancas.'}
 },
 {
   id:'control-por-gestos', title:'Control por gestos', tipo:'juego', featured:true, ie2:true,
@@ -468,6 +467,18 @@ const PROJECTS=[
   tech:['MediaPipe (detección de manos) en un Web Worker','EmulatorJS','JavaScript','GitHub Actions + Pages'],
   tags:['visión por computadora','cámara','retro'],
   ficha:{dest:'Estudiantes de secundaria que visitan la facultad; aspirantes a carreras de Matemática y Computación.',cont:'Visión por computadora, interacción persona-computadora, emulación.',aula:'Demostración que abre la pregunta “¿cómo reconoce la cámara una mano?”; después, explicar los puntos de referencia que detecta MediaPipe.'}
+},
+{
+  id:'museo-virtual', title:'Museo Virtual de Paleontología', tipo:'3d', featured:true, ie2:true,
+  ctx:'Informática Educativa II · FCEyN',
+  img:'img/museo-virtual.webp', url:GH+'Museo-Virtual/', repo:REPO+'Museo-Virtual', online:true,
+  extra:[['demo en Vercel','https://paleo-virtual-fceyn.vercel.app']],
+  short:'Repositorio virtual de fósiles en 3D, con buscador, filtros y recorrido inmersivo.',
+  desc:['Prototipo del museo virtual de paleontología de la Facultad de Ciencias Exactas y Naturales. Reúne modelos 3D de fósiles que se pueden buscar, filtrar y girar en el navegador, dentro de una sala recorrible.',
+        'El trabajo incluyó investigar opciones gratuitas de publicación y de visualización 3D (como `<model-viewer>`, Sketchfab y Three.js) y planificar un video corto para anteojos de realidad virtual que invite a recorrer el museo.'],
+  tech:['HTML, CSS y JavaScript','Visor 3D interactivo','Modelos .glb / .gltf optimizados para web','GitHub Pages y Vercel'],
+  tags:['3D','realidad virtual','web'],
+  ficha:{dest:'Área de Geología de la FCEyN y público general.',cont:'Fósiles y eras geológicas, visualización de objetos 3D, publicación web de colecciones.',aula:'Recorrido guiado proyectado o en grupos; búsqueda de piezas por filtros y comparación entre eras.'}
 },
 {
   id:'brain-challenge', title:'Brain Challenge 3D', tipo:'juego', ie2:true,
@@ -526,17 +537,6 @@ const PROJECTS=[
   tech:['JavaScript','PeerJS para el modo online','Diseño táctil para tablet'],
   tags:['juego de mesa','online','multijugador'],
   ficha:{dest:'Grupos de 2 a 6 personas.',cont:'Diseño de jugabilidad y toma de decisiones; nociones de economía personal: sueldo, préstamos, seguros e inversiones.',aula:'Partida en grupos con una tablet compartida, y luego puesta en común sobre las decisiones que más pesaron.'}
-},
-{
-  id:'atlas-electoral', title:'Atlas Electoral de La Pampa', tipo:'datos', ie2:false,
-  ctx:'Proyecto personal · análisis de datos',
-  img:'img/atlas-electoral.webp', url:GH+'Atlas-electoral-lapampa/', repo:REPO+'Atlas-electoral-lapampa', online:true,
-  short:'Resultados electorales provinciales 2007–2023 por localidad, con escenario 2027.',
-  desc:['Sitio interactivo con los resultados de las elecciones provinciales y municipales de La Pampa entre 2007 y 2023, a partir de las actas del Tribunal Electoral, consultables para toda la provincia o por localidad.',
-        'Incluye un buscador de candidatos, rankings de trayectorias y una calculadora del escenario 2027 donde se arman alianzas y se ve cómo se reparten las 30 bancas con el sistema D’Hondt.'],
-  tech:['HTML, CSS y JavaScript','Procesamiento de actas oficiales','Visualización de datos'],
-  tags:['elecciones','La Pampa','D’Hondt'],
-  ficha:{dest:'Proyecto personal; útil en secundaria para formación ciudadana.',cont:'Lectura e interpretación de datos, sistemas electorales y el método D’Hondt.',aula:'Explorar una localidad a lo largo de los años y probar en la calculadora cómo cambia el reparto de bancas.'}
 }
 ];
 
